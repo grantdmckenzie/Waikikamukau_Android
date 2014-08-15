@@ -25,21 +25,22 @@ public final class R {
         public static final int marker01_50_side=0x7f020008;
     }
     public static final class id {
-        public static final int Button=0x7f070004;
-        public static final int EditText=0x7f070005;
-        public static final int InnerRelativeLayout=0x7f070003;
-        public static final int imageView1=0x7f070008;
-        public static final int list=0x7f07000e;
+        public static final int InnerRelativeLayout=0x7f070004;
+        public static final int andybutton=0x7f070005;
+        public static final int andyedit=0x7f070006;
+        public static final int imageView1=0x7f070009;
+        public static final int list=0x7f07000f;
         public static final int openmapview=0x7f070001;
-        public static final int poiDistance=0x7f070006;
-        public static final int poiId=0x7f07000a;
-        public static final int poiLatitude=0x7f070009;
-        public static final int poiLongitude=0x7f07000b;
-        public static final int poiName=0x7f070007;
+        public static final int poiDetails=0x7f070003;
+        public static final int poiDistance=0x7f070007;
+        public static final int poiId=0x7f07000b;
+        public static final int poiLatitude=0x7f07000a;
+        public static final int poiLongitude=0x7f07000c;
+        public static final int poiName=0x7f070008;
         public static final int poidistance=0x7f070002;
         public static final int poiname=0x7f070000;
-        public static final int subtitle=0x7f07000d;
-        public static final int title=0x7f07000c;
+        public static final int subtitle=0x7f07000e;
+        public static final int title=0x7f07000d;
     }
     public static final class layout {
         public static final int details_layout=0x7f030000;

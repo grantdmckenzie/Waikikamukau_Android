@@ -49,6 +49,8 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
@@ -79,12 +81,16 @@ public class MainActivity extends Activity implements LocationListener {
      lat = 34.43;
      lng = -119.92;
      
-     
+     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+     //Remove notification bar
+     this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
      mResourceProxy = new DefaultResourceProxyImpl(getApplicationContext());
      setContentView(R.layout.main);
      // String url = "http://api.geonames.org/postalCodeSearchJSON?postalcode=9011&maxRows=10&username=demo";
-     String url = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/Nearby"; // ?lat=34.43&lng=-119.92";
-     new GetNearby().execute(url);
+     //String url = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/Nearby"; // ?lat=34.43&lng=-119.92";
+     //new GetNearby().execute(url);
      
      GeoPoint startPoint = new GeoPoint(34.415343, -119.845135);
      myOpenMapView = (MapView)findViewById(R.id.openmapview);
@@ -126,8 +132,8 @@ public class MainActivity extends Activity implements LocationListener {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 100, this);
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 100, this);
 	}
 	 @Override
 	 protected void onPause() {
@@ -150,7 +156,7 @@ public class MainActivity extends Activity implements LocationListener {
   	  private ProgressDialog dialog = new ProgressDialog(MainActivity.this);
 
   	  protected void onPreExecute() {
-  	   dialog.setMessage("Getting your data... Please wait...");
+  	   dialog.setMessage("Let's see what is nearby...");
   	   dialog.show();
   	  }
 
@@ -294,6 +300,8 @@ public class MainActivity extends Activity implements LocationListener {
         this.myOpenMapView.getOverlays().clear();
         this.myOpenMapView.getOverlays().add(this.mMyLocationOverlay);
         myOpenMapView.invalidate();
+        String url = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/Nearby"; // ?lat=34.43&lng=-119.92";
+        new GetNearby().execute(url);
 		
 	}
 	@Override

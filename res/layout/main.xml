@@ -12,7 +12,7 @@
      <ImageView
          android:id="@+id/imageView1"
          android:layout_width="40dp"
-         android:layout_height="40dp"
+         android:layout_height="50dp"
          android:layout_marginLeft="10dp"
          android:src="@drawable/cow_trans" />
 <LinearLayout
@@ -22,22 +22,23 @@
       <TextView
         android:id="@+id/title"
         android:layout_width="fill_parent"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="3dp"
         android:layout_height="23dp"
         android:gravity="center_vertical"
         android:text="@string/fulltitle"
         android:textColor="#FFFFFF"
-        android:textSize="21sp" />
+        android:textSize="23sp" />
       
       <TextView
         android:id="@+id/subtitle"
         android:layout_width="fill_parent"
-        android:layout_height="12dp"
+        android:layout_height="14dp"
         android:layout_marginLeft="5dp"
         android:gravity="center_vertical"
         android:text="@string/subtitle"
         android:textColor="#999999"
-        android:textSize="10sp" />
+        android:textSize="12sp" />
       </LinearLayout>
  </LinearLayout>
  
