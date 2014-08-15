@@ -14,28 +14,32 @@ public class Poi {
 	public double longitude;
 	public String distance_emp;
 	public String distance_metric;
+	public String id;
 	
-	public Poi(String name, double distance, double latitude, double longitude) {
+/*	public Poi(String name, double distance, double latitude, double longitude) {
 		this.name = name;
 		this.distance = distance;
 		this.latitude = latitude;
 		this.longitude = longitude;
-	}
+	}*/
 	public Poi(JSONObject object){
         try {
             this.name = object.getString("name");
             this.distance = object.getDouble("distance");
-            if (object.getDouble("distance") <= 304.8) {
-    			this.distance_emp = (int) Math.round(object.getDouble("distance") * 3.28084) + "ft";
+            this.latitude = object.getDouble("lat");
+            this.longitude = object.getDouble("lng");
+            this.id = object.getString("id");
+            if (this.distance <= 304.8) {
+    			this.distance_emp = (int) Math.round(this.distance * 3.28084) + "ft";
     		} else {
-    			this.distance_emp = (double) Math.round(object.getDouble("distance") * 3.28084 / 5280*100)/100 + " mi";
+    			this.distance_emp = (double) Math.round(this.distance * 3.28084 / 5280*100)/100 + " mi";
    
     		}
             
             if (object.getDouble("distance") <= 500) {
-    			this.distance_metric = (int) Math.round(object.getDouble("distance")) + "m";
+    			this.distance_metric = (int) Math.round(this.distance) + "m";
     		} else {
-    			this.distance_metric = (double) Math.round(object.getDouble("distance") / 1000 *100)/100 + " km";
+    			this.distance_metric = (double) Math.round(this.distance / 1000 *100)/100 + " km";
   
     		}
        } catch (JSONException e) {

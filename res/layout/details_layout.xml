@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/detailsbackground"
+    android:orientation="vertical" >
+
+
+ <TextView
+     android:id="@+id/poiname"
+     android:layout_width="match_parent"
+     android:layout_height="30dp" 
+     android:layout_marginLeft="15dp"
+     android:layout_marginTop="24dp"
+     android:layout_marginRight="15dp"
+     android:background="#ffffff"
+     android:textSize="27sp"
+     android:textColor="#7a2200"
+     >
+ </TextView>
+ 
+ <org.osmdroid.views.MapView
+     android:id="@+id/openmapview"
+     android:layout_width="fill_parent"
+     android:layout_height="150dp"
+     android:layout_marginLeft="15dp"
+     android:layout_marginRight="15dp"
+     android:layout_marginTop="10dp"/>
+ 
+ <TextView
+     android:id="@+id/poidistance"
+     android:layout_width="match_parent"
+     android:textSize="16sp"
+     android:layout_height="0dp" 
+     android:layout_marginLeft="15dp"
+     android:layout_marginRight="15dp"
+     android:layout_marginTop="10dp"
+     android:layout_weight="1"
+     android:textColor="#333333"
+     >
+ </TextView>
+
+<RelativeLayout 
+        android:id="@+id/InnerRelativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentBottom="true" >
+
+        <Button 
+            android:text="@string/label_submit_button" 
+            android:id="@+id/Button"
+            android:layout_alignParentRight="true" 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Button>
+
+        <EditText 
+            android:id="@+id/EditText" 
+            android:layout_width="fill_parent"
+            android:layout_toLeftOf="@id/Button"
+            android:layout_height="wrap_content">
+        </EditText>
+
+    </RelativeLayout>
+</LinearLayout>

@@ -2,4 +2,7 @@
 
     <string name="app_name">Waikikamukau</string>
 	<string name="hello">Waikikamukau</string>
+	<string name="fulltitle">WAIKIKAMUAKAU</string>
+	<string name="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit</string>
+	<string name="label_submit_button">Submit</string>
 </resources>

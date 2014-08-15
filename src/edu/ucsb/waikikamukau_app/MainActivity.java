@@ -31,9 +31,13 @@ import org.osmdroid.views.overlay.ItemizedIconOverlay.OnItemGestureListener;
 import org.osmdroid.views.overlay.ItemizedOverlay;
 import org.osmdroid.views.overlay.OverlayItem;
 
+import android.animation.ValueAnimator;
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
@@ -42,7 +46,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements LocationListener {
@@ -68,6 +79,7 @@ public class MainActivity extends Activity implements LocationListener {
      lat = 34.43;
      lng = -119.92;
      
+     
      mResourceProxy = new DefaultResourceProxyImpl(getApplicationContext());
      setContentView(R.layout.main);
      // String url = "http://api.geonames.org/postalCodeSearchJSON?postalcode=9011&maxRows=10&username=demo";
@@ -78,7 +90,7 @@ public class MainActivity extends Activity implements LocationListener {
      myOpenMapView = (MapView)findViewById(R.id.openmapview);
      myOpenMapView.setMultiTouchControls(true);
      myMapController = (MapController) myOpenMapView.getController();
-     myMapController.setZoom(15);
+     myMapController.setZoom(16);
      myMapController.setCenter(startPoint);
      
      locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
@@ -92,6 +104,10 @@ public class MainActivity extends Activity implements LocationListener {
      overlayItem.setMarker(mainMarker);
      items.add(overlayItem);
      
+     Typeface ralewaybold =Typeface.createFromAsset(getAssets(),"fonts/Raleway-Light.ttf");
+     TextView v = (TextView) findViewById(R.id.title);
+     v.setTypeface(ralewaybold);
+
      
      /* DefaultResourceProxyImpl defaultResourceProxyImpl = new DefaultResourceProxyImpl(this);
      MyItemizedIconOverlay myItemizedIconOverlay = new MyItemizedIconOverlay(items, null, defaultResourceProxyImpl);
@@ -102,25 +118,10 @@ public class MainActivity extends Activity implements LocationListener {
      myOpenMapView.invalidate();
     
      
+     
  }
- class Glistener implements OnItemGestureListener<OverlayItem> {
-     @Override
-     public boolean onItemLongPress(int index, OverlayItem item) {
-         //Toast.makeText(SampleWithMinimapItemizedoverlay.this, "Item " + item.mTitle,
-         //        Toast.LENGTH_LONG).show();
-
-         return false;
-     }
-
-     @Override
-     public boolean onItemSingleTapUp(int index, OverlayItem item) {
-        //Toast.makeText(SampleWithMinimapItemizedoverlay.this, "Item " + item.mTitle,
-          //       Toast.LENGTH_LONG).show();
-         return true; // We 'handled' this event.
-
-     }
-
- }
+	 
+ 
 	 @Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
@@ -135,7 +136,8 @@ public class MainActivity extends Activity implements LocationListener {
 		  locationManager.removeUpdates(this);
 	 }
 
-	 
+
+	    
 	    
     private class GetNearby extends AsyncTask<String, Void, String> {
   	  private static final int REGISTRATION_TIMEOUT = 3 * 1000;
@@ -241,21 +243,32 @@ public class MainActivity extends Activity implements LocationListener {
   	   //create an ArrayAdaptar from the String Array
   	   dataAdapter = new PoiAdapter(getApplicationContext(), poiList);
   	   ListView listView = (ListView) findViewById(R.id.list);
+  	   
+  	   
   	   // Assign adapter to ListView
   	   listView.setAdapter(dataAdapter);
 
   	   //enables filtering for the contents of the given ListView
   	   listView.setTextFilterEnabled(true);
   	   
-  	  /* listView.setOnItemClickListener(new OnItemClickListener() {
-  	    public void onItemClick(AdapterView<?> parent, View view,
-  	      int position, long id) {
-  	    // When clicked, show a toast with the TextView text
-  	    Country country = (Country) parent.getItemAtPosition(position);
-  	    Toast.makeText(getApplicationContext(),
-  	      country.getCode(), Toast.LENGTH_SHORT).show();
-  	    }
-  	   }); */
+	  	 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+	  		 
+	  	     public void onItemClick(AdapterView<?> parentAdapter, View view, int position, long id) {
+	  	         // Toast.makeText(MainActivity.this, "Item with id ["+id+"] - Position ["+position+"]", Toast.LENGTH_SHORT).show();
+	  	         Intent poiDetails = new Intent(MainActivity.this, DetailsActivity.class);
+	  	         String poiName = ((TextView) view.findViewById(R.id.poiName)).getText().toString();
+	  	         String poiDist = ((TextView) view.findViewById(R.id.poiDistance)).getText().toString();
+	  	         String poiLat = ((TextView) view.findViewById(R.id.poiLatitude)).getText().toString();
+	  	         String poiLng = ((TextView) view.findViewById(R.id.poiLongitude)).getText().toString();
+	  	         String poiId = ((TextView) view.findViewById(R.id.poiId)).getText().toString();
+	  	         poiDetails.putExtra("poiname", poiName);
+	  	         poiDetails.putExtra("poidistance", poiDist);
+	  	         poiDetails.putExtra("poilat", poiLat);
+	  	         poiDetails.putExtra("poilng", poiLng);
+	  	         poiDetails.putExtra("poiid", poiId);
+	  	         startActivity(poiDetails);
+	  	     }
+	  	});
 
 
   	  } catch (JSONException e) {
