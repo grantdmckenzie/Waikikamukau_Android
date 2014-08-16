@@ -15,23 +15,29 @@ public final class R {
     }
     public static final class drawable {
         public static final int arrow=0x7f020000;
-        public static final int city01=0x7f020001;
-        public static final int cow_trans=0x7f020002;
-        public static final int detailsbackground=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int listdivide=0x7f020005;
-        public static final int listview_bg=0x7f020006;
-        public static final int mainbackground=0x7f020007;
-        public static final int marker01_30=0x7f020008;
-        public static final int marker01_50_side=0x7f020009;
+        public static final int bottomtabs=0x7f020001;
+        public static final int city01=0x7f020002;
+        public static final int cow_trans=0x7f020003;
+        public static final int detailsbackground=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
+        public static final int list=0x7f020006;
+        public static final int listdivide=0x7f020007;
+        public static final int listview_bg=0x7f020008;
+        public static final int mainbackground=0x7f020009;
+        public static final int map=0x7f02000a;
+        public static final int marker01_30=0x7f02000b;
+        public static final int marker01_50_side=0x7f02000c;
+        public static final int profile=0x7f02000d;
+        public static final int settings=0x7f02000e;
     }
     public static final class id {
         public static final int InnerRelativeLayout=0x7f070004;
         public static final int andybutton=0x7f070005;
         public static final int andyedit=0x7f070006;
-        public static final int filler=0x7f07000f;
         public static final int imageView1=0x7f070009;
-        public static final int list=0x7f070010;
+        public static final int list=0x7f07000f;
+        public static final int list_icon=0x7f070010;
+        public static final int map_icon=0x7f070011;
         public static final int openmapview=0x7f070001;
         public static final int poiDetails=0x7f070003;
         public static final int poiDistance=0x7f070007;
@@ -41,6 +47,8 @@ public final class R {
         public static final int poiName=0x7f070008;
         public static final int poidistance=0x7f070002;
         public static final int poiname=0x7f070000;
+        public static final int profile_icon=0x7f070012;
+        public static final int settings_icon=0x7f070013;
         public static final int subtitle=0x7f07000e;
         public static final int title=0x7f07000d;
     }

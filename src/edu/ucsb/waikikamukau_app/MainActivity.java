@@ -66,8 +66,6 @@ public class MainActivity extends Activity implements LocationListener {
  private ResourceProxy mResourceProxy;
  private ArrayList<OverlayItem> items;
  private Drawable mainMarker;
- private double lat;
- private double lng;
  private ArrayList<Poi> poiList;
  private PoiAdapter dataAdapter = null;
  double mLongtitude = 31987968;
@@ -78,13 +76,13 @@ public class MainActivity extends Activity implements LocationListener {
  public void onCreate(Bundle savedInstanceState) {
      super.onCreate(savedInstanceState);
      
-     lat = 34.43;
-     lng = -119.92;
+     mLongtitude = 34.43;
+     mLatitude = -119.92;
      
-     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+     //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
      //Remove notification bar
-     this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+     //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
      mResourceProxy = new DefaultResourceProxyImpl(getApplicationContext());
      setContentView(R.layout.main);
@@ -175,8 +173,8 @@ public class MainActivity extends Activity implements LocationListener {
   	   //Log.v("Wai","URL: " +URL);
   	   //add name value pair for the country code
   	   List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-  	   nameValuePairs.add(new BasicNameValuePair("lat",String.valueOf(lat)));
-  	   nameValuePairs.add(new BasicNameValuePair("lng",String.valueOf(lng)));
+  	   nameValuePairs.add(new BasicNameValuePair("lat",String.valueOf(mLatitude)));
+  	   nameValuePairs.add(new BasicNameValuePair("lng",String.valueOf(mLongtitude)));
   	   httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs)); 
   	   response = httpclient.execute(httpPost);
   	   	

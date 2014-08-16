@@ -96,7 +96,7 @@ public class DetailsActivity extends Activity {
             myOpenMapView.invalidate();
             
             myMapController.setCenter(startPoint);
-            myMapController.setZoom(15);
+            myMapController.setZoom(18);
             Log.v("Wai", poilatitude + ", " + poilongitude);
             Log.v("Wai", startPoint.getLatitude() + ", " + startPoint.getLongitude());
             
