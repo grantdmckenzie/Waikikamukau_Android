@@ -103,21 +103,21 @@ public class Activity_Details extends Activity {
             TextView tv = (TextView) findViewById(R.id.poiname);
             TextView dist = (TextView) findViewById(R.id.poidistance);
             poiDetails = (TextView) findViewById(R.id.poiDetails);
-            andyvalue=(EditText)findViewById(R.id.andyedit);
+            /*andyvalue=(EditText)findViewById(R.id.andyedit);
     		andybutton=(Button)findViewById(R.id.andybutton);
     		andybutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                 	getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                 	setUp2send(andyvalue.getText().toString(), poiid);
                 }
-            });
+            });*/
             
             tv.setText(poiname);
-            dist.setText("You are about "+poidist+" from the POI.");
+            dist.setText("Distance: You are "+poidist+" from the POI.");
             
             
-            Typeface ralewaybold =Typeface.createFromAsset(getAssets(),"fonts/Raleway-SemiBold.ttf");
-            Typeface ralewaythin =Typeface.createFromAsset(getAssets(),"fonts/Raleway-Light.ttf");
+            Typeface ralewaybold =Typeface.createFromAsset(getAssets(),"fonts/Gotham-Bold.ttf");
+            Typeface ralewaythin =Typeface.createFromAsset(getAssets(),"fonts/Gotham-Book.ttf");
             tv.setTypeface(ralewaybold);
             dist.setTypeface(ralewaythin);
             poiDetails.setTypeface(ralewaythin);

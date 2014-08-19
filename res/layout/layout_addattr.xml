@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/detailsbackground"
+    android:orientation="vertical" >
+    <RelativeLayout 
+        android:id="@+id/InnerRelativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentBottom="true" >
+
+        <Button 
+            android:text="@string/label_submit_button" 
+            android:id="@+id/andybutton"
+            android:layout_alignParentRight="true" 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Button>
+
+        <EditText 
+            android:id="@+id/andyedit" 
+            android:layout_width="fill_parent"
+            android:layout_toLeftOf="@id/andybutton"
+            android:layout_height="wrap_content">
+        </EditText>
+
+    </RelativeLayout>
+</LinearLayout>

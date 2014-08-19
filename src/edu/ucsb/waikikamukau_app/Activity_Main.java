@@ -113,7 +113,7 @@ public class Activity_Main extends Activity implements LocationListener {
      overlayItem.setMarker(mainMarker);
      items.add(overlayItem);
      
-     Typeface ralewaybold =Typeface.createFromAsset(getAssets(),"fonts/Raleway-Light.ttf");
+     Typeface ralewaybold =Typeface.createFromAsset(getAssets(),"fonts/Gotham-Bold.ttf");
      TextView v = (TextView) findViewById(R.id.title);
      v.setTypeface(ralewaybold);
 
@@ -130,7 +130,11 @@ public class Activity_Main extends Activity implements LocationListener {
      
  }
  private void setUpBottomTabs() {
+	 
 	 ImageView map = (ImageView) findViewById(R.id.map_icon);
+	 ImageView list = (ImageView) findViewById(R.id.list_icon);
+	 map.setImageResource(R.drawable.map);
+	 list.setImageResource(R.drawable.list_a);
      map.setOnClickListener(new OnClickListener() {
          public void onClick(View v) {
   	         Intent mapView = new Intent(Activity_Main.this, Activity_Map.class);

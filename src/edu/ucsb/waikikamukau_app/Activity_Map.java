@@ -13,6 +13,7 @@ import org.osmdroid.views.overlay.OverlayItem;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -20,6 +21,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Activity_Map extends Activity {
@@ -35,6 +39,7 @@ public class Activity_Map extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_map);
+        setUpBottomTabs();
         
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -78,5 +83,17 @@ public class Activity_Map extends Activity {
         myOpenMapView.invalidate();
         myMapController.setCenter(startPoint);
     }
+	private void setUpBottomTabs() {
+		 ImageView map = (ImageView) findViewById(R.id.map_icon);
+		 ImageView list = (ImageView) findViewById(R.id.list_icon);
+		 map.setImageResource(R.drawable.map_a);
+		 list.setImageResource(R.drawable.list);
+	     list.setOnClickListener(new OnClickListener() {
+	         public void onClick(View v) {
+	  	         Intent mapView = new Intent(Activity_Map.this, Activity_Main.class);
+	  	         startActivity(mapView);
+	         }
+	     });
+	 }
 
 }

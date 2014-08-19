@@ -1,5 +1,6 @@
 package edu.ucsb.waikikamukau_app;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -14,7 +15,8 @@ public class Poi {
 	public double longitude;
 	public String distance_emp;
 	public String distance_metric;
-	public String id;
+	public int cat;
+	public Long id;
 	
 /*	public Poi(String name, double distance, double latitude, double longitude) {
 		this.name = name;
@@ -25,10 +27,11 @@ public class Poi {
 	public Poi(JSONObject object){
         try {
             this.name = object.getString("name");
-            this.distance = object.getDouble("distance");
+            this.distance = object.getDouble("dist");
             this.latitude = object.getDouble("lat");
             this.longitude = object.getDouble("lng");
-            this.id = object.getString("id");
+            this.id = object.getLong("id");
+            this.cat = object.getInt("cat");
             if (this.distance <= 304.8) {
     			this.distance_emp = (int) Math.round(this.distance * 3.28084) + "ft";
     		} else {
@@ -36,7 +39,7 @@ public class Poi {
    
     		}
             
-            if (object.getDouble("distance") <= 500) {
+            if (object.getDouble("dist") <= 500) {
     			this.distance_metric = (int) Math.round(this.distance) + "m";
     		} else {
     			this.distance_metric = (double) Math.round(this.distance / 1000 *100)/100 + " km";
