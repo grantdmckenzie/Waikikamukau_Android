@@ -271,13 +271,14 @@ public class Activity_Main extends Activity implements LocationListener {
   	   
   	   // Assign adapter to ListView
   	   listView.setAdapter(dataAdapter);
-
+  	 
   	   //enables filtering for the contents of the given ListView
-  	   listView.setTextFilterEnabled(true);
-  	   
+  	   //listView.setTextFilterEnabled(true);
+  	 
 	  	 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 	  		 
 	  	     public void onItemClick(AdapterView<?> parentAdapter, View view, int position, long id) {
+	  	    	 Log.v("Wai", "List Item Clicked");
 	  	         // Toast.makeText(MainActivity.this, "Item with id ["+id+"] - Position ["+position+"]", Toast.LENGTH_SHORT).show();
 	  	         Intent poiDetails = new Intent(Activity_Main.this, Activity_Details.class);
 	  	         String poiName = ((TextView) view.findViewById(R.id.poiName)).getText().toString();

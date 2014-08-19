@@ -37,7 +37,7 @@ public class Poi {
     		} else {
     			this.distance_emp = (double) Math.round(this.distance * 3.28084 / 5280*100)/100 + " mi";
    
-    		}
+    		}		
             
             if (object.getDouble("dist") <= 500) {
     			this.distance_metric = (int) Math.round(this.distance) + "m";
