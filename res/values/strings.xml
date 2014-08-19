@@ -2,6 +2,8 @@
 
     <string name="app_name">Waikikamukau</string>
 	<string name="hello">Waikikamukau</string>
+	<string name="activity_details">activity_details</string>
+	<string name="activity_map">activity_map</string>
 	<string name="fulltitle">WAIKIKAMUAKAU</string>
 	<string name="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit</string>
 	<string name="label_submit_button">Submit</string>

@@ -53,7 +53,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DetailsActivity extends Activity {
+public class Activity_Details extends Activity {
 	private MapView myOpenMapView;
 	private MapController myMapController;
 	private String poiid;
@@ -67,7 +67,7 @@ public class DetailsActivity extends Activity {
 	 @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.details_layout);
+        setContentView(R.layout.layout_details);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -144,7 +144,7 @@ public class DetailsActivity extends Activity {
 	  	  HttpResponse response;
 	  	  private String content =  null;
 	  	  private boolean error = false;
-	  	  private ProgressDialog dialog = new ProgressDialog(DetailsActivity.this);
+	  	  private ProgressDialog dialog = new ProgressDialog(Activity_Details.this);
 
 	  	  protected void onPreExecute() {
 	  	   dialog.setMessage("Getting the good stuff...");
@@ -207,7 +207,7 @@ public class DetailsActivity extends Activity {
 
 	  	  protected void onCancelled() {
 	  	   dialog.dismiss();
-	  	   Toast toast = Toast.makeText(DetailsActivity.this, "Error connecting to Server", Toast.LENGTH_LONG);
+	  	   Toast toast = Toast.makeText(Activity_Details.this, "Error connecting to Server", Toast.LENGTH_LONG);
 	  	   toast.setGravity(Gravity.TOP, 25, 400);
 	  	   toast.show();
 
@@ -217,7 +217,7 @@ public class DetailsActivity extends Activity {
 	  	   dialog.dismiss();
 	  	   Toast toast;
 	  	   if (error) {
-	  	    toast = Toast.makeText(DetailsActivity.this, content, Toast.LENGTH_LONG);
+	  	    toast = Toast.makeText(Activity_Details.this, content, Toast.LENGTH_LONG);
 	  	    toast.setGravity(Gravity.TOP, 25, 400);
 	  	    toast.show();
 	  	   } else {
@@ -257,7 +257,7 @@ public class DetailsActivity extends Activity {
 	  	  HttpResponse response;
 	  	  private String content =  null;
 	  	  private boolean error = false;
-	  	  private ProgressDialog dialog = new ProgressDialog(DetailsActivity.this);
+	  	  private ProgressDialog dialog = new ProgressDialog(Activity_Details.this);
 
 	  	  protected void onPreExecute() {
 	  	   dialog.setMessage("Updating Waikikamukau...");
@@ -325,7 +325,7 @@ public class DetailsActivity extends Activity {
 
 	  	  protected void onCancelled() {
 	  	   dialog.dismiss();
-	  	   Toast toast = Toast.makeText(DetailsActivity.this, "Error connecting to Server", Toast.LENGTH_LONG);
+	  	   Toast toast = Toast.makeText(Activity_Details.this, "Error connecting to Server", Toast.LENGTH_LONG);
 	  	   toast.setGravity(Gravity.TOP, 25, 400);
 	  	   toast.show();
 
@@ -335,7 +335,7 @@ public class DetailsActivity extends Activity {
 	  	   dialog.dismiss();
 	  	   Toast toast;
 	  	   if (error) {
-	  	    toast = Toast.makeText(DetailsActivity.this, content, Toast.LENGTH_LONG);
+	  	    toast = Toast.makeText(Activity_Details.this, content, Toast.LENGTH_LONG);
 	  	    toast.setGravity(Gravity.TOP, 25, 400);
 	  	    toast.show();
 	  	   } else {

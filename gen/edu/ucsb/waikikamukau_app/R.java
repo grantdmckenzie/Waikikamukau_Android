@@ -21,48 +21,52 @@ public final class R {
         public static final int detailsbackground=0x7f020004;
         public static final int ic_launcher=0x7f020005;
         public static final int list=0x7f020006;
-        public static final int listdivide=0x7f020007;
-        public static final int listview_bg=0x7f020008;
-        public static final int mainbackground=0x7f020009;
-        public static final int map=0x7f02000a;
-        public static final int marker01_30=0x7f02000b;
-        public static final int marker01_50_side=0x7f02000c;
-        public static final int profile=0x7f02000d;
-        public static final int settings=0x7f02000e;
+        public static final int list_active=0x7f020007;
+        public static final int listdivide=0x7f020008;
+        public static final int listview_bg=0x7f020009;
+        public static final int mainbackground=0x7f02000a;
+        public static final int map=0x7f02000b;
+        public static final int marker01_30=0x7f02000c;
+        public static final int marker01_50_side=0x7f02000d;
+        public static final int profile=0x7f02000e;
+        public static final int settings=0x7f02000f;
     }
     public static final class id {
-        public static final int InnerRelativeLayout=0x7f070004;
-        public static final int andybutton=0x7f070005;
-        public static final int andyedit=0x7f070006;
-        public static final int imageView1=0x7f070009;
+        public static final int InnerRelativeLayout=0x7f07000a;
+        public static final int andybutton=0x7f07000b;
+        public static final int andyedit=0x7f07000c;
+        public static final int imageView1=0x7f070002;
         public static final int list=0x7f07000f;
         public static final int list_icon=0x7f070010;
         public static final int map_icon=0x7f070011;
-        public static final int openmapview=0x7f070001;
-        public static final int poiDetails=0x7f070003;
-        public static final int poiDistance=0x7f070007;
-        public static final int poiId=0x7f07000b;
-        public static final int poiLatitude=0x7f07000a;
-        public static final int poiLongitude=0x7f07000c;
-        public static final int poiName=0x7f070008;
-        public static final int poidistance=0x7f070002;
-        public static final int poiname=0x7f070000;
+        public static final int openmapview=0x7f070007;
+        public static final int poiDetails=0x7f070009;
+        public static final int poiDistance=0x7f070000;
+        public static final int poiId=0x7f070004;
+        public static final int poiLatitude=0x7f070003;
+        public static final int poiLongitude=0x7f070005;
+        public static final int poiName=0x7f070001;
+        public static final int poidistance=0x7f070008;
+        public static final int poiname=0x7f070006;
         public static final int profile_icon=0x7f070012;
         public static final int settings_icon=0x7f070013;
         public static final int subtitle=0x7f07000e;
         public static final int title=0x7f07000d;
     }
     public static final class layout {
-        public static final int details_layout=0x7f030000;
-        public static final int item_poi=0x7f030001;
-        public static final int main=0x7f030002;
+        public static final int item_poi=0x7f030000;
+        public static final int layout_details=0x7f030001;
+        public static final int layout_main=0x7f030002;
+        public static final int layout_map=0x7f030003;
     }
     public static final class string {
+        public static final int activity_details=0x7f050002;
+        public static final int activity_map=0x7f050003;
         public static final int app_name=0x7f050000;
-        public static final int fulltitle=0x7f050002;
+        public static final int fulltitle=0x7f050004;
         public static final int hello=0x7f050001;
-        public static final int label_submit_button=0x7f050004;
-        public static final int subtitle=0x7f050003;
+        public static final int label_submit_button=0x7f050006;
+        public static final int subtitle=0x7f050005;
     }
     public static final class style {
         /** 
