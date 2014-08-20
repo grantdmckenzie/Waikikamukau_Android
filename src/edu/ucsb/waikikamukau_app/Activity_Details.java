@@ -49,6 +49,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,12 +59,12 @@ public class Activity_Details extends Activity {
 	private MapController myMapController;
 	private String poiid;
 	private EditText andyvalue;
-	private Button andybutton;
-	private TextView poiDetails;
+	private TextView poiDets;
 	private ItemizedOverlay<OverlayItem> mMyLocationOverlay;
 	private ResourceProxy mResourceProxy;
 	private double poilatitude;
 	private double poilongitude;
+	private String poiname;
 	 @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +72,7 @@ public class Activity_Details extends Activity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String poiname = extras.getString("poiname");
+            poiname = extras.getString("poiname");
             String poidist = extras.getString("poidistance");
             poilatitude = Double.parseDouble(extras.getString("poilat"));
             poilongitude = Double.parseDouble(extras.getString("poilng"));
@@ -97,30 +98,32 @@ public class Activity_Details extends Activity {
             
             myMapController.setCenter(startPoint);
             myMapController.setZoom(18);
-            Log.v("Wai", poilatitude + ", " + poilongitude);
-            Log.v("Wai", startPoint.getLatitude() + ", " + startPoint.getLongitude());
             
             TextView tv = (TextView) findViewById(R.id.poiname);
             TextView dist = (TextView) findViewById(R.id.poidistance);
-            poiDetails = (TextView) findViewById(R.id.poiDetails);
-            /*andyvalue=(EditText)findViewById(R.id.andyedit);
-    		andybutton=(Button)findViewById(R.id.andybutton);
-    		andybutton.setOnClickListener(new View.OnClickListener() {
+            TextView rvTitle = (TextView) findViewById(R.id.reviewsTitle);
+            poiDets = (TextView) findViewById(R.id.poiDetails);
+            
+            
+            ImageView checkView =(ImageView)findViewById(R.id.edit);
+            checkView.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                	getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-                	setUp2send(andyvalue.getText().toString(), poiid);
+	   	  	         Intent poiDetails = new Intent(Activity_Details.this, Activity_AddAttr.class);
+	   	  	         poiDetails.putExtra("poiid", poiid);
+	   	  	         poiDetails.putExtra("poiname", poiname);
+	   	  	         startActivity(poiDetails);
                 }
-            });*/
+            });
             
             tv.setText(poiname);
-            dist.setText("Distance: You are "+poidist+" from the POI.");
-            
+            dist.setText("Distance: "+poidist);
             
             Typeface ralewaybold =Typeface.createFromAsset(getAssets(),"fonts/Gotham-Bold.ttf");
             Typeface ralewaythin =Typeface.createFromAsset(getAssets(),"fonts/Gotham-Book.ttf");
             tv.setTypeface(ralewaybold);
             dist.setTypeface(ralewaythin);
-            poiDetails.setTypeface(ralewaythin);
+            poiDets.setTypeface(ralewaythin);
+            rvTitle.setTypeface(ralewaybold);
             
             String url = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/GetAttributes"; 
             String[] params = {url,poiid};
@@ -232,19 +235,66 @@ public class Activity_Details extends Activity {
 	  	 
 	  	 }
 	 private void DisplayDetails(String content) throws JSONException {
-		 JSONObject responseObj = new JSONObject(content);
-		 JSONArray poiListObj = responseObj.getJSONArray("response");
-		 TextView poiDetails = (TextView) findViewById(R.id.poiDetails);
-		 for (int i=0; i<poiListObj.length(); i++){
-			JSONObject j = poiListObj.getJSONObject(i);
-			Iterator keys = j.keys();
-		    while(keys.hasNext()) {
-		    	String key = (String)keys.next();
-		        String value = (String)j.get(key);
-		        poiDetails.append(key +" : " + value + "\n");
-		    }
-			
-	  	 }
+
+ 	  	  try {
+
+ 	  	   JSONObject responseObj = new JSONObject(content); 
+ 	  	   JSONArray rvListObj = responseObj.getJSONArray("response");
+
+ 	  	   ArrayList<Review> reviewList = new ArrayList<Review>();
+ 
+ 	  	    TextView poiDetails = (TextView) findViewById(R.id.poiDetails);
+ 	  	   	 boolean bReview = false;
+ 	  	   	 boolean anyReviews = false;
+			 for (int i=0; i<rvListObj.length(); i++){
+				JSONObject j = rvListObj.getJSONObject(i);
+				bReview = false;
+				Iterator keys = j.keys();
+			    while(keys.hasNext()) {
+			    	String key = (String)keys.next();
+			        String value = (String)j.get(key);
+			        if (key.equals("d") || key.equals("desc") || key.equals("description")) {
+			        	bReview = true;
+			        	anyReviews = true;
+			        } 
+			    }
+				if(bReview) {
+					Review rv = new Review(rvListObj.getJSONObject(i));
+					reviewList.add(rv);
+				} else {
+					keys = j.keys();
+					while(keys.hasNext()) {
+				    	String key = (String)keys.next();
+				        String value = (String)j.get(key);
+				        poiDetails.append(key +" : " + value + "\n");
+				    }
+		        	
+		        }
+		  	 }
+			 if (!anyReviews) {
+				 JSONObject ob = new JSONObject();
+				 ob.put("d", "Nothing yet.  Why not add one?");
+				 ob.put("author", "Moo");
+				 ob.put("ts", null);
+				 Review rv = new Review(ob);
+				 reviewList.add(rv);
+			 }
+		 	//create an ArrayAdaptar from the String Array
+	  	   ReviewAdapter dataAdapter = new ReviewAdapter(getApplicationContext(), reviewList);
+	  	   ListView listView = (ListView) findViewById(R.id.list);
+	  	   
+	  	   
+	  	   // Assign adapter to ListView
+	  	   listView.setAdapter(dataAdapter);
+	  	   
+	  	 
+ 	  	   
+ 	  	  } catch (JSONException e) {
+ 	  	   e.printStackTrace();
+ 	  	  }
+		 
+		 
+		 
 		 GeoPoint startPoint = new GeoPoint(poilatitude, poilongitude);
 		 myMapController.setCenter(startPoint);
 	 }
@@ -341,7 +391,7 @@ public class Activity_Details extends Activity {
 	  	   } else {
 	  		 String url = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/GetAttributes"; 
              String[] params = {url,poiid};
-             poiDetails.setText("");
+             poiDets.setText("");
              new GetDetails().execute(params);
 	  	   }
 	  	  }

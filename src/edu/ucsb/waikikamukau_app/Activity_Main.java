@@ -278,8 +278,6 @@ public class Activity_Main extends Activity implements LocationListener {
 	  	 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 	  		 
 	  	     public void onItemClick(AdapterView<?> parentAdapter, View view, int position, long id) {
-	  	    	 Log.v("Wai", "List Item Clicked");
-	  	         // Toast.makeText(MainActivity.this, "Item with id ["+id+"] - Position ["+position+"]", Toast.LENGTH_SHORT).show();
 	  	         Intent poiDetails = new Intent(Activity_Main.this, Activity_Details.class);
 	  	         String poiName = ((TextView) view.findViewById(R.id.poiName)).getText().toString();
 	  	         String poiDist = ((TextView) view.findViewById(R.id.poiDistance)).getText().toString();
@@ -308,7 +306,7 @@ public class Activity_Main extends Activity implements LocationListener {
 	public void onLocationChanged(Location location) {
 		 mLatitude = location.getLatitude();
          mLongitude = location.getLongitude();
-	     Log.v("Wai", "Location Changed: " + mLatitude + ", " + mLongitude);
+	     //Log.v("Wai", "Location Changed: " + mLatitude + ", " + mLongitude);
         GeoPoint gpt = new GeoPoint(mLatitude, mLongitude);
         myMapController.setCenter(gpt);
         items.clear(); // COMMENT OUT THIS LINE IF YOU WANT A NEW ICON FOR EACH CHANGE OF POSITION

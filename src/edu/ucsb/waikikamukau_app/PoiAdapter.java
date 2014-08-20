@@ -53,7 +53,7 @@ public class PoiAdapter extends ArrayAdapter<Poi> {
         }
         // Populate the data into the template view using the data object
         viewHolder.name.setText(poi.name);
-        viewHolder.distance.setText(poi.distance_emp + " | " + poi.distance_metric);
+        viewHolder.distance.setText(poi.distance_emp + " (" + poi.distance_metric+")");
         viewHolder.latitude.setText(poi.latitude+"");
         viewHolder.longitude.setText(poi.longitude+"");
         viewHolder.id.setText(poi.id+"");
