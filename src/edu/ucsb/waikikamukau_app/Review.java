@@ -20,7 +20,7 @@ public class Review {
             this.author = object.getString("author");
             this.text = object.getString("d");
             this.date = object.getInt("ts");
-            this.date_hr = new SimpleDateFormat("dd MMM yyy").format(new Date(this.date * 1000L));
+            this.date_hr = new SimpleDateFormat("MMM dd, yyyy").format(new Date(this.date * 1000L));
        } catch (JSONException e) {
             e.printStackTrace();
        }

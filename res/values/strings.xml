@@ -9,5 +9,7 @@
 	<string name="subtitle">(why-kick-a-moo-cow)  GO OUT AND GRAZE</string>
 	<string name="label_submit_button">Moo</string>
 	<string name="reviewsTitle">Comments</string>
+	<string name="linkTitle">Links</string>
+	<string name="distanceTitle">Distance</string>
 	<string name="andy_instructions">Here at Waikikamukau we take a different approach to data entry. Your options are unlimited!  Simply enter an attribute for this place, a semicolon and then the value for that property (e.g., NoiseLevel:Loud). Enter as much or as little text as you want.  For now, only one entry at a time.</string>
 </resources>

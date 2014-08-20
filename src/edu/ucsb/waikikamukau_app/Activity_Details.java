@@ -36,20 +36,24 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -103,6 +107,8 @@ public class Activity_Details extends Activity {
             TextView dist = (TextView) findViewById(R.id.poidistance);
             TextView rvTitle = (TextView) findViewById(R.id.reviewsTitle);
             poiDets = (TextView) findViewById(R.id.poiDetails);
+            TextView lkTitle = (TextView) findViewById(R.id.linkTitle);
+            TextView diTitle = (TextView) findViewById(R.id.distanceTitle);
             
             
             ImageView checkView =(ImageView)findViewById(R.id.edit);
@@ -116,7 +122,7 @@ public class Activity_Details extends Activity {
             });
             
             tv.setText(poiname);
-            dist.setText("Distance: "+poidist);
+            dist.setText(poidist);
             
             Typeface ralewaybold =Typeface.createFromAsset(getAssets(),"fonts/Gotham-Bold.ttf");
             Typeface ralewaythin =Typeface.createFromAsset(getAssets(),"fonts/Gotham-Book.ttf");
@@ -124,20 +130,14 @@ public class Activity_Details extends Activity {
             dist.setTypeface(ralewaythin);
             poiDets.setTypeface(ralewaythin);
             rvTitle.setTypeface(ralewaybold);
+            lkTitle.setTypeface(ralewaybold);
+            diTitle.setTypeface(ralewaybold);
             
             String url = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/GetAttributes"; 
             String[] params = {url,poiid};
             new GetDetails().execute(params);
         }
     }
-	 private void setUp2send(String value, String id) {
-		 
-		 String url = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/UpdateAttributes"; 
-		 String[] parts = value.split(":");
-         String[] params = {url,id, parts[0].trim().toLowerCase(),parts[1].trim().toLowerCase()};
-         andyvalue.setText("");
-         new SendDetails().execute(params);
-	 }
 	 
 	 private class GetDetails extends AsyncTask<String, Void, String> {
 	  	  private static final int REGISTRATION_TIMEOUT = 3 * 1000;
@@ -235,7 +235,7 @@ public class Activity_Details extends Activity {
 	  	 
 	  	 }
 	 private void DisplayDetails(String content) throws JSONException {
-
+		 Typeface book =Typeface.createFromAsset(getAssets(),"fonts/Gotham-Book.ttf");
  	  	  try {
 
  	  	   JSONObject responseObj = new JSONObject(content); 
@@ -243,9 +243,10 @@ public class Activity_Details extends Activity {
 
  	  	   ArrayList<Review> reviewList = new ArrayList<Review>();
  
- 	  	    TextView poiDetails = (TextView) findViewById(R.id.poiDetails);
+ 	  	     TextView poiDetails = (TextView) findViewById(R.id.poiDetails);
  	  	   	 boolean bReview = false;
  	  	   	 boolean anyReviews = false;
+ 	  	     LinearLayout d = (LinearLayout) findViewById(R.id.reviews);
 			 for (int i=0; i<rvListObj.length(); i++){
 				JSONObject j = rvListObj.getJSONObject(i);
 				bReview = false;
@@ -253,14 +254,25 @@ public class Activity_Details extends Activity {
 			    while(keys.hasNext()) {
 			    	String key = (String)keys.next();
 			        String value = (String)j.get(key);
-			        if (key.equals("d") || key.equals("desc") || key.equals("description")) {
+			        if (key.equals("d")) {
 			        	bReview = true;
 			        	anyReviews = true;
 			        } 
 			    }
 				if(bReview) {
 					Review rv = new Review(rvListObj.getJSONObject(i));
-					reviewList.add(rv);
+					LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+					lp.setMargins(30, 20, 30, 20);
+					
+					TextView tv=new TextView(this);
+					tv.setLayoutParams(lp);
+					tv.setText(Html.fromHtml(rv.text+"<br/><font color='#999999'>"+rv.author+" ("+rv.date_hr+")</font>"));
+					tv.setTypeface(book);
+					tv.setLineSpacing(1.2f,1.2f);
+					tv.setTextSize(15);
+					tv.setTextColor(Color.parseColor("#666666"));
+					d.addView(tv);
+					// reviewList.add(rv);
 				} else {
 					keys = j.keys();
 					while(keys.hasNext()) {
@@ -280,12 +292,12 @@ public class Activity_Details extends Activity {
 				 reviewList.add(rv);
 			 }
 		 	//create an ArrayAdaptar from the String Array
-	  	   ReviewAdapter dataAdapter = new ReviewAdapter(getApplicationContext(), reviewList);
-	  	   ListView listView = (ListView) findViewById(R.id.list);
+	  	   // ReviewAdapter dataAdapter = new ReviewAdapter(getApplicationContext(), reviewList);
+	  	   // ListView listView = (ListView) findViewById(R.id.list);
 	  	   
 	  	   
 	  	   // Assign adapter to ListView
-	  	   listView.setAdapter(dataAdapter);
+	  	   // listView.setAdapter(dataAdapter);
 	  	   
 	  	 
  	  	   
@@ -299,102 +311,5 @@ public class Activity_Details extends Activity {
 		 myMapController.setCenter(startPoint);
 	 }
 	 
-	 private class SendDetails extends AsyncTask<String, Void, String> {
-	  	  private static final int REGISTRATION_TIMEOUT = 3 * 1000;
-	  	  private static final int WAIT_TIMEOUT = 30 * 1000;
-	  	  private final HttpClient httpclient = new DefaultHttpClient();
-	  	  final HttpParams params = httpclient.getParams();
-	  	  HttpResponse response;
-	  	  private String content =  null;
-	  	  private boolean error = false;
-	  	  private ProgressDialog dialog = new ProgressDialog(Activity_Details.this);
-
-	  	  protected void onPreExecute() {
-	  	   dialog.setMessage("Updating Waikikamukau...");
-	  	   dialog.show();
-	  	  }
-
-	  	  protected String doInBackground(String... urls) {
-
-	  	   String URL = null;
-	  	   
-	  	   try {
-
-	  	   URL = urls[0];
-	  	   String id = urls[1];
-	  	   String akey = urls[2];
-	  	   String aval = urls[3];
-	  	   Log.v("Wai", URL + " " + id + " " + akey + " " + aval);
-	  	   HttpConnectionParams.setConnectionTimeout(params, REGISTRATION_TIMEOUT);
-	  	   HttpConnectionParams.setSoTimeout(params, WAIT_TIMEOUT);
-	  	   ConnManagerParams.setTimeout(params, WAIT_TIMEOUT);
-
-	  	   HttpPost httpPost = new HttpPost(URL);
-	  	   //Log.v("Wai","URL: " +URL);
-	  	   //add name value pair for the country code
-	  	   List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-	  	   nameValuePairs.add(new BasicNameValuePair("id",String.valueOf(id)));
-	  	   nameValuePairs.add(new BasicNameValuePair(akey,String.valueOf(aval)));
-	  	   httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs)); 
-	  	   
-	  	   response = httpclient.execute(httpPost);
-	  	   	
-	  	    StatusLine statusLine = response.getStatusLine();
-	  	    Log.v("Wai","SEND Status: " +response.getStatusLine());
-	  	    if(statusLine.getStatusCode() == HttpStatus.SC_OK){
-	  	     ByteArrayOutputStream out = new ByteArrayOutputStream();
-	  	     response.getEntity().writeTo(out);
-	  	     out.close();
-	  	     content = out.toString();
-	  	     Log.v("Wai","SEND Content: " +content);
-	  	    } else{
-	  	     //Closes the connection.
-	  	     Log.w("HTTP1:",statusLine.getReasonPhrase());
-	  	     response.getEntity().getContent().close();
-	  	     throw new IOException(statusLine.getReasonPhrase());
-	  	    }
-	  	   } catch (ClientProtocolException e) {
-	  	    Log.w("HTTP2:",e );
-	  	    content = e.getMessage();
-	  	    error = true;
-	  	    cancel(true);
-	  	   } catch (IOException e) {
-	  	    Log.w("HTTP3:",e );
-	  	    content = e.getMessage();
-	  	    error = true;
-	  	    cancel(true);
-	  	   }catch (Exception e) {
-	  	    Log.w("HTTP4:",e );
-	  	    content = e.getMessage();
-	  	    error = true;
-	  	    cancel(true);
-	  	   }
-
-	  	   return content;
-	  	  }
-
-	  	  protected void onCancelled() {
-	  	   dialog.dismiss();
-	  	   Toast toast = Toast.makeText(Activity_Details.this, "Error connecting to Server", Toast.LENGTH_LONG);
-	  	   toast.setGravity(Gravity.TOP, 25, 400);
-	  	   toast.show();
-
-	  	  }
-
-	  	  protected void onPostExecute(String content) {
-	  	   dialog.dismiss();
-	  	   Toast toast;
-	  	   if (error) {
-	  	    toast = Toast.makeText(Activity_Details.this, content, Toast.LENGTH_LONG);
-	  	    toast.setGravity(Gravity.TOP, 25, 400);
-	  	    toast.show();
-	  	   } else {
-	  		 String url = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/GetAttributes"; 
-             String[] params = {url,poiid};
-             poiDets.setText("");
-             new GetDetails().execute(params);
-	  	   }
-	  	  }
-	  	 
-	  	 }
+	
 }
