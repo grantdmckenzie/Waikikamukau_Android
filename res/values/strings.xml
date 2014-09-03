@@ -5,6 +5,7 @@
 	<string name="activity_details">activity_details</string>
 	<string name="activity_map">activity_map</string>
 	<string name="activity_addattr">activity_addattr</string>
+	<string name="activity_newpoi">activity_newpoi</string>
 	<string name="fulltitle">WAIKIKAMUAKAU</string>
 	<string name="subtitle">(why-kick-a-moo-cow)  GO OUT AND GRAZE</string>
 	<string name="label_submit_button">Moo</string>

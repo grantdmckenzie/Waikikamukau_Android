@@ -224,9 +224,9 @@ public final class R {
     public static final class id {
         public static final int InnerRelativeLayout=0x7f07001c;
         public static final int andybutton=0x7f07000e;
-        public static final int andyedit=0x7f07001d;
         public static final int andyentry=0x7f07000c;
         public static final int andyname=0x7f07000d;
+        public static final int category=0x7f070025;
         public static final int checkin=0x7f070019;
         public static final int distanceTitle=0x7f070010;
         public static final int edit=0x7f070016;
@@ -236,6 +236,7 @@ public final class R {
         public static final int list=0x7f07001f;
         public static final int list_icon=0x7f070020;
         public static final int map_icon=0x7f070021;
+        public static final int name=0x7f070024;
         public static final int openmapview=0x7f07000f;
         public static final int photo=0x7f070018;
         public static final int poiCat=0x7f070000;
@@ -255,6 +256,7 @@ public final class R {
         public static final int reviewsTitle=0x7f070014;
         public static final int save=0x7f070017;
         public static final int searchbutton=0x7f07001e;
+        public static final int searchtext=0x7f07001d;
         public static final int settings_icon=0x7f070023;
         public static final int subtitle=0x7f07001b;
         public static final int title=0x7f07001a;
@@ -266,20 +268,22 @@ public final class R {
         public static final int layout_details=0x7f030003;
         public static final int layout_main=0x7f030004;
         public static final int layout_map=0x7f030005;
+        public static final int layout_newpoi=0x7f030006;
     }
     public static final class string {
         public static final int activity_addattr=0x7f050004;
         public static final int activity_details=0x7f050002;
         public static final int activity_map=0x7f050003;
-        public static final int andy_instructions=0x7f05000b;
+        public static final int activity_newpoi=0x7f050005;
+        public static final int andy_instructions=0x7f05000c;
         public static final int app_name=0x7f050000;
-        public static final int distanceTitle=0x7f05000a;
-        public static final int fulltitle=0x7f050005;
+        public static final int distanceTitle=0x7f05000b;
+        public static final int fulltitle=0x7f050006;
         public static final int hello=0x7f050001;
-        public static final int label_submit_button=0x7f050007;
-        public static final int linkTitle=0x7f050009;
-        public static final int reviewsTitle=0x7f050008;
-        public static final int subtitle=0x7f050006;
+        public static final int label_submit_button=0x7f050008;
+        public static final int linkTitle=0x7f05000a;
+        public static final int reviewsTitle=0x7f050009;
+        public static final int subtitle=0x7f050007;
     }
     public static final class style {
         /** 

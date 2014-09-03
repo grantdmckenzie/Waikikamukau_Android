@@ -58,7 +58,7 @@
         android:background="@drawable/bottomtabs" >
 
         <EditText
-            android:id="@+id/andyedit"
+            android:id="@+id/searchtext"
             android:layout_width="fill_parent"
             android:layout_height="27dp"
             android:layout_marginLeft="10dp"

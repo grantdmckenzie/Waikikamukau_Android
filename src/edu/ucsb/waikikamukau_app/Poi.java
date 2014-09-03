@@ -15,21 +15,27 @@ public class Poi {
 	public String distance_emp;
 	public String distance_metric;
 	public int cat;
-	public Long id;
+	public String id;
 	
-/*	public Poi(String name, double distance, double latitude, double longitude) {
+	public Poi(String name) {
 		this.name = name;
-		this.distance = distance;
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}*/
+		this.distance = 1;
+		this.distance_emp = "";
+		this.distance_metric = "";
+		this.latitude = 1;
+		this.longitude = 1;
+		this.cat = 182;
+		this.id = "new";
+	}
+	
 	public Poi(JSONObject object){
         try {
             this.name = object.getString("name");
             this.distance = object.getDouble("dist");
             this.latitude = object.getDouble("lat");
             this.longitude = object.getDouble("lng");
-            this.id = object.getLong("id");
+            this.id = object.getString("id");
+            this.id = object.getString("uri");
             this.cat = object.getInt("cat");
             if (this.distance <= 304.8) {
     			this.distance_emp = (int) Math.round(this.distance * 3.28084) + "ft";

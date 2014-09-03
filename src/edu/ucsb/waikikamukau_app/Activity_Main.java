@@ -54,6 +54,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -143,6 +144,22 @@ public class Activity_Main extends Activity implements LocationListener {
   	         startActivity(mapView);
          }
      });
+     
+     ImageView searchbutton = (ImageView) findViewById(R.id.searchbutton);
+     searchbutton.setOnClickListener(new OnClickListener() {
+         public void onClick(View v) {
+  	         TextView tv = (TextView) findViewById(R.id.searchtext);
+  	         String val = tv.getText().toString();
+  	         String[] params = new String[4];
+  	         params[0] = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/Nearby"; // ?lat=34.43&lng=-119.92";
+  	         params[1] = mLatitude+"";
+  	         params[2] = mLongitude+"";
+  	         params[3] = val;
+  	         new GetNearby().execute(params);
+  	         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+  	    	 imm.hideSoftInputFromWindow(tv.getWindowToken(), 0);
+         }
+     });
  }
 	 
  
@@ -150,8 +167,8 @@ public class Activity_Main extends Activity implements LocationListener {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 100, this);
-		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 100, this);
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1000, this);
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1000, this);
 	}
 	 @Override
 	 protected void onPause() {
@@ -181,10 +198,17 @@ public class Activity_Main extends Activity implements LocationListener {
   	  protected String doInBackground(String... urls) {
 
   	   String URL = null;
+  	   String queryParam = null;
+  	   String lat = null;
+  	   String lng = null;
   	   
   	   try {
 
   	   URL = urls[0];
+  	   lat = urls[1];
+  	   lng = urls[2];
+  	   queryParam = urls[3];
+  	   
   	   HttpConnectionParams.setConnectionTimeout(params, REGISTRATION_TIMEOUT);
   	   HttpConnectionParams.setSoTimeout(params, WAIT_TIMEOUT);
   	   ConnManagerParams.setTimeout(params, WAIT_TIMEOUT);
@@ -192,20 +216,20 @@ public class Activity_Main extends Activity implements LocationListener {
   	   HttpPost httpPost = new HttpPost(URL);
   	   //Log.v("Wai","URL: " +URL);
   	   //add name value pair for the country code
-  	   List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-  	   nameValuePairs.add(new BasicNameValuePair("lat",String.valueOf(mLatitude)));
-  	   nameValuePairs.add(new BasicNameValuePair("lng",String.valueOf(mLongitude)));
+  	   List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
+  	   nameValuePairs.add(new BasicNameValuePair("lat",String.valueOf(lat)));
+  	   nameValuePairs.add(new BasicNameValuePair("lng",String.valueOf(lng)));
+  	   nameValuePairs.add(new BasicNameValuePair("q",String.valueOf(queryParam)));
   	   httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs)); 
   	   response = httpclient.execute(httpPost);
   	   	
   	    StatusLine statusLine = response.getStatusLine();
-  	    // Log.v("Wai","Status: " +response.getAllHeaders()[1]);
+  	    //Log.v("Wai","Status: " +response.getAllHeaders()[1]);
   	    if(statusLine.getStatusCode() == HttpStatus.SC_OK){
   	     ByteArrayOutputStream out = new ByteArrayOutputStream();
   	     response.getEntity().writeTo(out);
   	     out.close();
   	     content = out.toString();
-  	     // Log.v("Wai","Content: " +content);
   	    } else{
   	     //Closes the connection.
   	     Log.w("HTTP1:",statusLine.getReasonPhrase());
@@ -264,6 +288,9 @@ public class Activity_Main extends Activity implements LocationListener {
   	    Poi poi = new Poi(poiListObj.getJSONObject(i));
   	    poiList.add(poi);
   	   }
+  	   Poi poi = new Poi("Add New Point of Interest");
+  	   poiList.add(poi);
+  	   
   	   //create an ArrayAdaptar from the String Array
   	   dataAdapter = new PoiAdapter(getApplicationContext(), poiList);
   	   ListView listView = (ListView) findViewById(R.id.list);
@@ -278,18 +305,28 @@ public class Activity_Main extends Activity implements LocationListener {
 	  	 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 	  		 
 	  	     public void onItemClick(AdapterView<?> parentAdapter, View view, int position, long id) {
-	  	         Intent poiDetails = new Intent(Activity_Main.this, Activity_Details.class);
-	  	         String poiName = ((TextView) view.findViewById(R.id.poiName)).getText().toString();
-	  	         String poiDist = ((TextView) view.findViewById(R.id.poiDistance)).getText().toString();
-	  	         String poiLat = ((TextView) view.findViewById(R.id.poiLatitude)).getText().toString();
-	  	         String poiLng = ((TextView) view.findViewById(R.id.poiLongitude)).getText().toString();
-	  	         String poiId = ((TextView) view.findViewById(R.id.poiId)).getText().toString();
-	  	         poiDetails.putExtra("poiname", poiName);
-	  	         poiDetails.putExtra("poidistance", poiDist);
-	  	         poiDetails.putExtra("poilat", poiLat);
-	  	         poiDetails.putExtra("poilng", poiLng);
-	  	         poiDetails.putExtra("poiid", poiId);
-	  	         startActivity(poiDetails);
+	  	    	 
+	  	    	String poiId = ((TextView) view.findViewById(R.id.poiId)).getText().toString();
+	  	    	if (!poiId.equals("new")) {
+		  	         Intent poiDetails = new Intent(Activity_Main.this, Activity_Details.class);
+		  	         String poiName = ((TextView) view.findViewById(R.id.poiName)).getText().toString();
+		  	         String poiDist = ((TextView) view.findViewById(R.id.poiDistance)).getText().toString();
+		  	         String poiLat = ((TextView) view.findViewById(R.id.poiLatitude)).getText().toString();
+		  	         String poiLng = ((TextView) view.findViewById(R.id.poiLongitude)).getText().toString();
+		  	         poiDetails.putExtra("poiname", poiName);
+		  	         poiDetails.putExtra("poidistance", poiDist);
+		  	         poiDetails.putExtra("poilat", poiLat);
+		  	         poiDetails.putExtra("poilng", poiLng);
+		  	         poiDetails.putExtra("poiid", poiId);
+		  	         startActivity(poiDetails);
+	  	    	} else {
+	  	    		 Intent newPoi = new Intent(Activity_Main.this, Activity_NewPoi.class);
+		  	         String poiLat = ((TextView) view.findViewById(R.id.poiLatitude)).getText().toString();
+		  	         String poiLng = ((TextView) view.findViewById(R.id.poiLongitude)).getText().toString();
+		  	         newPoi.putExtra("poilat", poiLat);
+		  	         newPoi.putExtra("poilng", poiLng);
+		  	         startActivity(newPoi);
+	  	    	}
 	  	     }
 	  	});
 
@@ -317,8 +354,12 @@ public class Activity_Main extends Activity implements LocationListener {
         this.myOpenMapView.getOverlays().clear();
         this.myOpenMapView.getOverlays().add(this.mMyLocationOverlay);
         myOpenMapView.invalidate();
-        String url = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/Nearby"; // ?lat=34.43&lng=-119.92";
-        new GetNearby().execute(url);
+        String[] params = new String[4];
+        params[0] = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/Nearby"; // ?lat=34.43&lng=-119.92";
+        params[1] = mLatitude+"";
+        params[2] = mLongitude+"";
+        params[3] = "";
+        new GetNearby().execute(params);
 		
 	}
 	@Override
