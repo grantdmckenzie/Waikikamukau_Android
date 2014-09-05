@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="2" >
+
+    <dataSet config="20.0.0" >
+        <source path="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/assets" />
+    </dataSet>
+    <dataSet config="20.0.0" >
+        <source path="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/assets" />
+    </dataSet>
+    <dataSet config="main" >
+        <source path="/home/grantdmckenzie/workspace/Waikikamukau_app/assets" >
+            <file
+                name="fonts/coolvetica.ttf"
+                path="/home/grantdmckenzie/workspace/Waikikamukau_app/assets/fonts/coolvetica.ttf" />
+            <file
+                name="fonts/Raleway-Light.ttf"
+                path="/home/grantdmckenzie/workspace/Waikikamukau_app/assets/fonts/Raleway-Light.ttf" />
+            <file
+                name="fonts/Gotham-Bold.ttf"
+                path="/home/grantdmckenzie/workspace/Waikikamukau_app/assets/fonts/Gotham-Bold.ttf" />
+            <file
+                name="fonts/Gotham-Book.ttf"
+                path="/home/grantdmckenzie/workspace/Waikikamukau_app/assets/fonts/Gotham-Book.ttf" />
+            <file
+                name="fonts/secret.ttf"
+                path="/home/grantdmckenzie/workspace/Waikikamukau_app/assets/fonts/secret.ttf" />
+            <file
+                name="fonts/Raleway-SemiBold.ttf"
+                path="/home/grantdmckenzie/workspace/Waikikamukau_app/assets/fonts/Raleway-SemiBold.ttf" />
+            <file
+                name="fonts/Gotham-Light.ttf"
+                path="/home/grantdmckenzie/workspace/Waikikamukau_app/assets/fonts/Gotham-Light.ttf" />
+            <file
+                name="poitypes.json"
+                path="/home/grantdmckenzie/workspace/Waikikamukau_app/assets/poitypes.json" />
+        </source>
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="/home/grantdmckenzie/workspace/Waikikamukau_app/build-types/debug/assets" />
+    </dataSet>
+
+</merger>

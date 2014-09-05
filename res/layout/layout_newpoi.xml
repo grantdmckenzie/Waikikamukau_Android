@@ -34,23 +34,62 @@
 			     >
 			 </TextView>
         </LinearLayout>
-        
+        <TextView
+			     android:id="@+id/poinamet"
+			     android:layout_width="match_parent"
+			     android:layout_height="wrap_content" 
+			     android:layout_marginLeft="12dp"
+			     android:text="Name"
+			     android:textSize="16sp"
+			     android:textColor="#ffffff"
+			     />
 	    <EditText
 	        android:id="@+id/name"
 	        android:layout_width="match_parent"
-	        android:layout_height="40dp"
-	        android:hint="POI Name"
-	        android:textSize="20sp"
-	        android:gravity="top" >
-	    </EditText>
-		<EditText
-	        android:id="@+id/category"
-	        android:layout_width="match_parent"
-	        android:layout_height="40dp"
-	        android:hint="POI Category"
-	        android:textSize="20sp"
-	        android:gravity="top" >
-	    </EditText>
+	        android:layout_height="48dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+	        android:textSize="24sp"
+	        android:gravity="center_vertical">	    
+	        </EditText>
+	    <TextView
+		     android:id="@+id/poicatt"
+		     android:layout_width="match_parent"
+		     android:layout_height="wrap_content" 
+		     android:text="Category"
+		     android:layout_marginLeft="12dp"
+		     android:layout_marginTop="6dp"
+		     android:textSize="16sp"
+		     android:textColor="#ffffff"
+		     />
+		<Spinner
+			 android:id="@+id/spinner1"
+			 android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+			 android:layout_height="wrap_content" />
+		<TextView
+		     android:id="@+id/poimapt"
+		     android:layout_width="match_parent"
+		     android:layout_height="wrap_content" 
+		     android:text="Enter a location by clicking on the map"
+		     android:layout_marginTop="6dp"
+		     android:textSize="16sp"
+		     android:layout_marginLeft="3dp"
+		     android:textColor="#ffffff"
+		     />
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.MapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_margin="3dp"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
     <Button
         android:id="@+id/andybutton"
         android:layout_width="match_parent"

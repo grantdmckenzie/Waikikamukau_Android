@@ -26,6 +26,13 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.TileOverlay;
+import com.google.android.gms.maps.model.TileOverlayOptions;
+
 public class Activity_Map extends Activity {
 	 private MapView myOpenMapView;
 	 private MapController myMapController;
@@ -36,6 +43,7 @@ public class Activity_Map extends Activity {
 	 private Drawable mainMarker;
 	 private double mLongitude;
 	 private double mLatitude;
+     private GoogleMap map;
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_map);
@@ -49,39 +57,22 @@ public class Activity_Map extends Activity {
         	mLatitude = 34.43;
             mLongitude = -119.9;	
         }
-        
-        
-        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+        if (map!=null){
+            LatLng p = new LatLng(mLatitude, mLongitude);
+            //Marker marker = map.addMarker(new MarkerOptions().position(p));
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(p, 15));
+            map.setMapType(GoogleMap.MAP_TYPE_NONE);
+            // map.setOnCameraChangeListener(getCameraChangeListener());
+            map.getUiSettings().setZoomControlsEnabled(false);
+            TileOverlayOptions opts = new TileOverlayOptions();
+            opts.tileProvider(new MapBoxOnlineTileProvider("grantdmckenzie.je0ai8ba"));
+            opts.zIndex(1);
+            TileOverlay overlay = map.addTileOverlay(opts);
 
-        //Remove notification bar
-        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+        
 
-        mResourceProxy = new DefaultResourceProxyImpl(getApplicationContext());
-        
-        // String url = "http://api.geonames.org/postalCodeSearchJSON?postalcode=9011&maxRows=10&username=demo";
-        //String url = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/Nearby"; // ?lat=34.43&lng=-119.92";
-        //new GetNearby().execute(url);
-        
-        GeoPoint startPoint = new GeoPoint(mLatitude, mLongitude);
-        myOpenMapView = (MapView)findViewById(R.id.openmapview);
-        myOpenMapView.setMultiTouchControls(true);
-        myMapController = (MapController) myOpenMapView.getController();
-        myMapController.setZoom(16);
-        
-      
-        
-        mainMarker = this.getResources().getDrawable(R.drawable.marker01_30);
-        mainMarker.setBounds(0 - mainMarker.getIntrinsicWidth() / 2, 0 - mainMarker.getIntrinsicHeight(),mainMarker.getIntrinsicWidth() / 2, 0);
-        
-        items = new ArrayList<OverlayItem>();
-        OverlayItem overlayItem = new OverlayItem("Here", "SampleDescription", new GeoPoint(mLatitude, mLongitude));
-        overlayItem.setMarker(mainMarker);
-        items.add(overlayItem);
-        
-        this.mMyLocationOverlay = new ItemizedIconOverlay<OverlayItem>(items, new Glistener() , mResourceProxy);
-        this.myOpenMapView.getOverlays().add(this.mMyLocationOverlay);
-        myOpenMapView.invalidate();
-        myMapController.setCenter(startPoint);
     }
 	private void setUpBottomTabs() {
 		 ImageView map = (ImageView) findViewById(R.id.map_icon);

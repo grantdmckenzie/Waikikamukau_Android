@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:background="@drawable/listdivide"
+    android:padding="6dip" >
+
+
+	
+		<ImageView
+            android:id="@+id/poiCat"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/cow_trans" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical" >
+			<TextView
+		        android:id="@+id/poiName"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:gravity="center_vertical"
+		        android:layout_marginStart="50dp"
+		        android:layout_marginLeft="50dp"
+		        android:singleLine="true"
+		        android:textColor="#6E5929"
+		        android:textSize="19sp" />
+		    <TextView
+		      	android:id="@+id/poiDistance"
+		     	android:layout_width="wrap_content"
+		        android:layout_height="26dip"
+		        android:gravity="center_vertical"
+		        android:layout_marginStart="50dp"
+		        android:layout_marginLeft="50dp"
+		        android:textColor="#84724A"
+		        android:textSize="15sp" />
+		
+		    
+        </LinearLayout>
+        <ImageView
+         android:id="@+id/imageView1"
+         android:layout_width="15dp"
+         android:layout_height="15dp"
+         android:layout_alignParentRight="true"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="18dp"
+        android:gravity="center_vertical"
+         android:src="@drawable/arrow" />
+		<TextView
+	        android:id="@+id/poiLatitude"
+	        android:layout_width="0dp"
+	        android:layout_height="0dp"
+	        android:textSize="0sp" />
+		<TextView
+	        android:id="@+id/poiId"
+	        android:layout_width="0dp"
+	        android:layout_height="0dp"
+	        android:textSize="0sp" />
+		<TextView
+	        android:id="@+id/poiLongitude"
+	        android:layout_width="0dp"
+	        android:layout_height="0dp"
+	        android:textSize="0sp" />
+</RelativeLayout><!-- From: file:/home/grantdmckenzie/workspace/Waikikamukau_app/res/layout/item_poi.xml -->

@@ -1,16 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">Waikikamukau</string>
-	<string name="hello">Waikikamukau</string>
-	<string name="activity_details">activity_details</string>
-	<string name="activity_map">activity_map</string>
-	<string name="activity_addattr">activity_addattr</string>
-	<string name="activity_newpoi">activity_newpoi</string>
-	<string name="fulltitle">WAIKIKAMUAKAU</string>
-	<string name="subtitle">(why-kick-a-moo-cow)  GO OUT AND GRAZE</string>
-	<string name="label_submit_button">Moo</string>
-	<string name="reviewsTitle">Comments</string>
-	<string name="linkTitle">Links</string>
-	<string name="distanceTitle">Distance</string>
-	<string name="andy_instructions">Here at Waikikamukau we take a different approach to data entry. Your options are unlimited!  Simply enter an attribute for this place, a semicolon and then the value for that property (e.g., NoiseLevel:Loud). Enter as much or as little text as you want.  For now, only one entry at a time.</string>
+    <string name="hello">Waikikamukau</string>
+    <string name="activity_details">activity_details</string>
+    <string name="activity_map">activity_map</string>
+    <string name="activity_addattr">activity_addattr</string>
+    <string name="activity_newpoi">activity_newpoi</string>
+    <string name="fulltitle">WAIKIKAMUAKAU</string>
+    <string name="subtitle">(why-kick-a-moo-cow)  GO OUT AND GRAZE</string>
+    <string name="label_submit_button">Moo</string>
+    <string name="reviewsTitle">Comments</string>
+    <string name="linkTitle">Links</string>
+    <string name="distanceTitle">Distance</string>
+    <string name="andy_instructions">Here at Waikikamukau we take a different approach to data entry. Your options are unlimited!  Simply enter an attribute for this place, a semicolon and then the value for that property (e.g., NoiseLevel:Loud). Enter as much or as little text as you want.  For now, only one entry at a time.</string>
+    <string name="title_activity_my">MapBoxOnlineTileProvider</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
 </resources>

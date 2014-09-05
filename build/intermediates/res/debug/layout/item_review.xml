@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/listdivide"
+    android:padding="6dip" >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical" >
+			<TextView
+		        android:id="@+id/reviewText"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textColor="#6E5929"
+		        android:textSize="17sp" />
+			<LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal" >
+			    <TextView
+			      	android:id="@+id/reviewAuthor"
+			     	android:layout_width="0dp"
+			     	android:layout_weight="0.5"
+			        android:layout_height="wrap_content"
+			        android:textColor="#436268"
+			        android:layout_marginTop="2dp"
+			        android:textSize="14sp" />
+			    <TextView
+			      	android:id="@+id/reviewDate"
+			     	android:layout_width="0dp"
+			     	android:layout_marginTop="2dp"
+			     	android:layout_weight="0.5"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentRight="true" 
+			        android:gravity="right"
+			        android:textColor="#436268"
+			        android:textSize="12sp" />
+        </LinearLayout>
+</LinearLayout>
+</RelativeLayout><!-- From: file:/home/grantdmckenzie/workspace/Waikikamukau_app/res/layout/item_review.xml -->

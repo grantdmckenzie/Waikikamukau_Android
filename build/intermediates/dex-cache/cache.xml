@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/pre-dexed/debug/android-support-v4-9578c021acac6098d34116a0bcd45729b48f7276.jar"
+        jar="/home/grantdmckenzie/workspace/Waikikamukau_app/libs/android-support-v4.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="db0f122c99ef9f90dbab3fada6d191f2880cbb8e"/>
+    <item
+        dex="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-c4edbaa1f72c12e0e4b81f2ed2458e454b615efa.jar"
+        jar="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+    <item
+        dex="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/pre-dexed/debug/classes-cf7906a824a8c7f6db02e3f7db1ee56895f4d7f5.jar"
+        jar="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+    <item
+        dex="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/pre-dexed/debug/classes-1627a1d207082d76c88f31fd06a361375e67b0a7.jar"
+        jar="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/exploded-aar/com.google.android.gms/play-services/3.1.36/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="7421dcb3ed9db47a59ec618e2398f0df65c2d480"/>
+    <item
+        dex="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/pre-dexed/debug/classes-2ad51ca6ef27082e1db5a1bd7ae1d327faa9ad54.jar"
+        jar="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef"/>
+    <item
+        dex="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/pre-dexed/debug/gson-2.3-10925a33f39cbd167452d180e9d3a067731d75f5.jar"
+        jar="/home/grantdmckenzie/workspace/Waikikamukau_app/libs/gson-2.3.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce"/>
+    <item
+        dex="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-820090ec777e85e5f91abc11b0ce2cdd64f29191.jar"
+        jar="/usr/share/android-studio/data/sdk/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
+    <item
+        dex="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/pre-dexed/debug/osmdroid-android-4.2-af5db866496c1a52416cb2ffcd10fef928ee3c73.jar"
+        jar="/home/grantdmckenzie/workspace/Waikikamukau_app/libs/osmdroid-android-4.2.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="f3a0c73a9ed04a5d0959789c53da9f08462bfcc2"/>
+    <item
+        dex="/home/grantdmckenzie/workspace/Waikikamukau_app/build/intermediates/pre-dexed/debug/slf4j-android-1.5.8-66f0ccf47d25bfa66bc4bf3af647aea7641599e3.jar"
+        jar="/home/grantdmckenzie/workspace/Waikikamukau_app/libs/slf4j-android-1.5.8.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="404eece4bb07ea211f5a879c22458775c612f0df"/>
+
+</pre-dex-items>

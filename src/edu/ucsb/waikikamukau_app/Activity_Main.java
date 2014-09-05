@@ -84,48 +84,17 @@ public class Activity_Main extends Activity implements LocationListener {
      
      mLongitude = 34.43;
      mLatitude = -119.92;
-     
-     //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-     //Remove notification bar
-     //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-     mResourceProxy = new DefaultResourceProxyImpl(getApplicationContext());
-     
-     // String url = "http://api.geonames.org/postalCodeSearchJSON?postalcode=9011&maxRows=10&username=demo";
-     //String url = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/Nearby"; // ?lat=34.43&lng=-119.92";
-     //new GetNearby().execute(url);
-     
-     GeoPoint startPoint = new GeoPoint(34.415343, -119.845135);
-     myOpenMapView = (MapView)findViewById(R.id.openmapview);
-     myOpenMapView.setMultiTouchControls(true);
-     myMapController = (MapController) myOpenMapView.getController();
-     myMapController.setZoom(16);
-     myMapController.setCenter(startPoint);
      
      locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
      locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 100, this);
-     
-     mainMarker = this.getResources().getDrawable(R.drawable.marker01_30);
-     mainMarker.setBounds(0 - mainMarker.getIntrinsicWidth() / 2, 0 - mainMarker.getIntrinsicHeight(),mainMarker.getIntrinsicWidth() / 2, 0);
-     
-     items = new ArrayList<OverlayItem>();
-     OverlayItem overlayItem = new OverlayItem("Here", "SampleDescription", startPoint);
-     overlayItem.setMarker(mainMarker);
-     items.add(overlayItem);
+
      
      Typeface ralewaybold =Typeface.createFromAsset(getAssets(),"fonts/Gotham-Bold.ttf");
      TextView v = (TextView) findViewById(R.id.title);
      v.setTypeface(ralewaybold);
 
-     
-     /* DefaultResourceProxyImpl defaultResourceProxyImpl = new DefaultResourceProxyImpl(this);
-     MyItemizedIconOverlay myItemizedIconOverlay = new MyItemizedIconOverlay(items, null, defaultResourceProxyImpl);
-     myOpenMapView.getOverlays().add(myItemizedIconOverlay); */
-     
-     this.mMyLocationOverlay = new ItemizedIconOverlay<OverlayItem>(items, new Glistener() , mResourceProxy);
-     this.myOpenMapView.getOverlays().add(this.mMyLocationOverlay);
-     myOpenMapView.invalidate();
+
     
      
      
@@ -321,10 +290,8 @@ public class Activity_Main extends Activity implements LocationListener {
 		  	         startActivity(poiDetails);
 	  	    	} else {
 	  	    		 Intent newPoi = new Intent(Activity_Main.this, Activity_NewPoi.class);
-		  	         String poiLat = ((TextView) view.findViewById(R.id.poiLatitude)).getText().toString();
-		  	         String poiLng = ((TextView) view.findViewById(R.id.poiLongitude)).getText().toString();
-		  	         newPoi.putExtra("poilat", poiLat);
-		  	         newPoi.putExtra("poilng", poiLng);
+		  	         newPoi.putExtra("poilat", mLatitude);
+		  	         newPoi.putExtra("poilng", mLongitude);
 		  	         startActivity(newPoi);
 	  	    	}
 	  	     }
@@ -343,17 +310,8 @@ public class Activity_Main extends Activity implements LocationListener {
 	public void onLocationChanged(Location location) {
 		 mLatitude = location.getLatitude();
          mLongitude = location.getLongitude();
-	     //Log.v("Wai", "Location Changed: " + mLatitude + ", " + mLongitude);
-        GeoPoint gpt = new GeoPoint(mLatitude, mLongitude);
-        myMapController.setCenter(gpt);
-        items.clear(); // COMMENT OUT THIS LINE IF YOU WANT A NEW ICON FOR EACH CHANGE OF POSITION
-        OverlayItem overlayItem = new OverlayItem("Here", "SampleDescription", gpt);
-        overlayItem.setMarker(mainMarker);
-        items.add(overlayItem);
-        this.mMyLocationOverlay = new ItemizedIconOverlay<OverlayItem>(items,new Glistener() , mResourceProxy);
-        this.myOpenMapView.getOverlays().clear();
-        this.myOpenMapView.getOverlays().add(this.mMyLocationOverlay);
-        myOpenMapView.invalidate();
+	     Log.v("Wai", "Location Changed: " + mLatitude + ", " + mLongitude);
+
         String[] params = new String[4];
         params[0] = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/Nearby"; // ?lat=34.43&lng=-119.92";
         params[1] = mLatitude+"";
