@@ -640,6 +640,7 @@
 
     <string name="reviewsTitle">Comments</string>
     <string name="subtitle">(why-kick-a-moo-cow)  GO OUT AND GRAZE</string>
+    <string name="title_activity_activity__new_poi_send">Activity_NewPoiSend</string>
     <string name="title_activity_my">MapBoxOnlineTileProvider</string>
     <!-- From: file:/home/grantdmckenzie/workspace/Waikikamukau_app/res/values/styles.xml -->
     <eat-comment />

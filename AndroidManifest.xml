@@ -35,7 +35,6 @@
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -63,7 +62,12 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
-
+        <activity
+            android:name=".Activity_NewPoiSend"
+            android:label="@string/title_activity_activity__new_poi_send"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyD2sU-R0wIDkX97dD0p42MXVXq0vnbHPoY" />
@@ -72,6 +76,7 @@
             android:name=".MyActivity"
             android:label="@string/title_activity_my" >
         </activity>
+
     </application>
 
 </manifest>

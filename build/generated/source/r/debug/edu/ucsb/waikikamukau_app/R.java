@@ -1302,7 +1302,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f070018;
         public static final int action_menu_presenter=0x7f070019;
         public static final int action_mode_close_button=0x7f070027;
-        public static final int action_settings=0x7f07006c;
+        public static final int action_settings=0x7f07006d;
         public static final int activity_chooser_view_content=0x7f070028;
         public static final int always=0x7f070012;
         public static final int andybutton=0x7f070051;
@@ -1314,6 +1314,7 @@ containing a value of this type.
         public static final int checkin=0x7f07005c;
         public static final int collapseActionView=0x7f070014;
         public static final int default_activity_button=0x7f07002b;
+        public static final int details=0x7f07006c;
         public static final int dialog=0x7f070015;
         public static final int disableHome=0x7f070008;
         public static final int distanceTitle=0x7f070053;
@@ -1436,10 +1437,12 @@ containing a value of this type.
         public static final int layout_main=0x7f03001d;
         public static final int layout_map=0x7f03001e;
         public static final int layout_newpoi=0x7f03001f;
-        public static final int support_simple_spinner_dropdown_item=0x7f030020;
+        public static final int layout_newpoisend=0x7f030020;
+        public static final int support_simple_spinner_dropdown_item=0x7f030021;
     }
     public static final class menu {
-        public static final int my=0x7f0c0000;
+        public static final int activity__new_poi_send=0x7f0c0000;
+        public static final int my=0x7f0c0001;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f0a0000;
@@ -1491,7 +1494,8 @@ containing a value of this type.
         public static final int location_client_ulr_inactive_unknown_restriction=0x7f0a002e;
         public static final int reviewsTitle=0x7f0a002f;
         public static final int subtitle=0x7f0a0030;
-        public static final int title_activity_my=0x7f0a0031;
+        public static final int title_activity_activity__new_poi_send=0x7f0a0031;
+        public static final int title_activity_my=0x7f0a0032;
     }
     public static final class style {
         /** 

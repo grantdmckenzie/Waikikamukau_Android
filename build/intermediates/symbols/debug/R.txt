@@ -503,7 +503,7 @@ int id action_context_bar 0x7f070020
 int id action_menu_divider 0x7f070018
 int id action_menu_presenter 0x7f070019
 int id action_mode_close_button 0x7f070027
-int id action_settings 0x7f07006c
+int id action_settings 0x7f07006d
 int id activity_chooser_view_content 0x7f070028
 int id always 0x7f070012
 int id andybutton 0x7f070051
@@ -515,6 +515,7 @@ int id checkbox 0x7f070030
 int id checkin 0x7f07005c
 int id collapseActionView 0x7f070014
 int id default_activity_button 0x7f07002b
+int id details 0x7f07006c
 int id dialog 0x7f070015
 int id disableHome 0x7f070008
 int id distanceTitle 0x7f070053
@@ -633,8 +634,10 @@ int layout layout_details 0x7f03001c
 int layout layout_main 0x7f03001d
 int layout layout_map 0x7f03001e
 int layout layout_newpoi 0x7f03001f
-int layout support_simple_spinner_dropdown_item 0x7f030020
-int menu my 0x7f0c0000
+int layout layout_newpoisend 0x7f030020
+int layout support_simple_spinner_dropdown_item 0x7f030021
+int menu activity__new_poi_send 0x7f0c0000
+int menu my 0x7f0c0001
 int string abc_action_bar_home_description 0x7f0a0000
 int string abc_action_bar_up_description 0x7f0a0001
 int string abc_action_menu_overflow_description 0x7f0a0002
@@ -684,7 +687,8 @@ int string location_client_ulr_inactive_age_unknown 0x7f0a002d
 int string location_client_ulr_inactive_unknown_restriction 0x7f0a002e
 int string reviewsTitle 0x7f0a002f
 int string subtitle 0x7f0a0030
-int string title_activity_my 0x7f0a0031
+int string title_activity_activity__new_poi_send 0x7f0a0031
+int string title_activity_my 0x7f0a0032
 int style AppBaseTheme 0x7f0b0000
 int style AppTheme 0x7f0b0001
 int style ListFont 0x7f0b0002

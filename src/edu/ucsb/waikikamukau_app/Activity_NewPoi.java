@@ -2,8 +2,13 @@ package edu.ucsb.waikikamukau_app;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 
@@ -28,6 +33,7 @@ import java.util.HashMap;
 
 public class Activity_NewPoi extends Activity {
 	private GoogleMap map;
+    private Marker newpoiloc;
 	 @Override
 	 public void onCreate(Bundle savedInstanceState) {
 	     super.onCreate(savedInstanceState);
@@ -51,7 +57,7 @@ public class Activity_NewPoi extends Activity {
                  opts.zIndex(1);
                  TileOverlay overlay = map.addTileOverlay(opts);
 
-                 Marker mMelbourne = map.addMarker(new MarkerOptions()
+                 newpoiloc = map.addMarker(new MarkerOptions()
                          .position(p)
                          .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker01_30))
                          .draggable(true));
@@ -86,6 +92,29 @@ public class Activity_NewPoi extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+         Button moo = (Button) findViewById(R.id.andybutton);
+         moo.setOnClickListener(new OnClickListener() {
+             public void onClick(View v) {
+                 EditText nameET = (EditText) findViewById(R.id.name);
+                 Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+                 String name = nameET.getText().toString();
+                 try {
+                    JSONObject catobj = new JSONObject(spinner.getSelectedItem().toString());
+                    String cat = catobj.get("id").toString();
+
+                     Intent poiSend = new Intent(Activity_NewPoi.this, Activity_NewPoiSend.class);
+                     poiSend.putExtra("lat", newpoiloc.getPosition().latitude);
+                     poiSend.putExtra("lng", newpoiloc.getPosition().longitude);
+                     poiSend.putExtra("name", name);
+                     poiSend.putExtra("cat", cat);
+
+                     startActivity(poiSend);
+
+                 } catch (JSONException e) {
+                     e.printStackTrace();
+                 }
+             }
+         });
 
 	 }
 
