@@ -1,10 +1,10 @@
 package edu.ucsb.waikikamukau_app;
 
-import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 public class Poi {
@@ -34,7 +34,7 @@ public class Poi {
             this.distance = object.getDouble("dist");
             this.latitude = object.getDouble("lat");
             this.longitude = object.getDouble("lng");
-            this.id = object.getString("id");
+            this.id = object.getString("w_id");
             this.id = object.getString("uri");
             this.cat = object.getInt("cat");
             if (this.distance <= 304.8) {

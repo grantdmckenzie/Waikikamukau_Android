@@ -1,11 +1,32 @@
 package edu.ucsb.waikikamukau_app;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.TileOverlay;
+import com.google.android.gms.maps.model.TileOverlayOptions;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -23,40 +44,17 @@ import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.osmdroid.DefaultResourceProxyImpl;
 import org.osmdroid.ResourceProxy;
-import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedOverlay;
 import org.osmdroid.views.overlay.OverlayItem;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.text.Html;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Activity_Details extends Activity {
 	private MapView myOpenMapView;
@@ -69,6 +67,7 @@ public class Activity_Details extends Activity {
 	private double poilatitude;
 	private double poilongitude;
 	private String poiname;
+    private GoogleMap map;
 	 @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,26 +81,21 @@ public class Activity_Details extends Activity {
             poilongitude = Double.parseDouble(extras.getString("poilng"));
             
             poiid = extras.getString("poiid");
+
+            map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+            if (map!=null){
+
+                map.setMapType(GoogleMap.MAP_TYPE_NONE);
+                // map.setOnCameraChangeListener(getCameraChangeListener());
+                map.getUiSettings().setZoomControlsEnabled(false);
+                TileOverlayOptions opts = new TileOverlayOptions();
+                opts.tileProvider(new MapBoxOnlineTileProvider("grantdmckenzie.je0ai8ba"));
+                opts.zIndex(1);
+                TileOverlay overlay = map.addTileOverlay(opts);
+
+            }
             
-            GeoPoint startPoint = new GeoPoint(poilatitude, poilongitude);
-            myOpenMapView = (MapView)findViewById(R.id.openmapview);
-            myOpenMapView.setMultiTouchControls(true);
-            myMapController = (MapController) myOpenMapView.getController();
-            
-            Drawable mainMarker = this.getResources().getDrawable(R.drawable.marker01_30);
-            mainMarker.setBounds(0 - mainMarker.getIntrinsicWidth() / 2, 0 - mainMarker.getIntrinsicHeight(),mainMarker.getIntrinsicWidth() / 2, 0);
-            
-            ArrayList<OverlayItem> items = new ArrayList<OverlayItem>();
-            OverlayItem overlayItem = new OverlayItem("Here", "SampleDescription", startPoint);
-            overlayItem.setMarker(mainMarker);
-            items.add(overlayItem);
-            mResourceProxy = new DefaultResourceProxyImpl(getApplicationContext());
-            this.mMyLocationOverlay = new ItemizedIconOverlay<OverlayItem>(items, new Glistener() , mResourceProxy);
-            this.myOpenMapView.getOverlays().add(this.mMyLocationOverlay);
-            myOpenMapView.invalidate();
-            
-            myMapController.setCenter(startPoint);
-            myMapController.setZoom(18);
+
             
             TextView tv = (TextView) findViewById(R.id.poiname);
             TextView dist = (TextView) findViewById(R.id.poidistance);
@@ -304,11 +298,14 @@ public class Activity_Details extends Activity {
  	  	  } catch (JSONException e) {
  	  	   e.printStackTrace();
  	  	  }
-		 
-		 
-		 
-		 GeoPoint startPoint = new GeoPoint(poilatitude, poilongitude);
-		 myMapController.setCenter(startPoint);
+         LatLng p = new LatLng(poilatitude, poilongitude);
+         //Marker marker = map.addMarker(new MarkerOptions().position(p));
+         map.moveCamera(CameraUpdateFactory.newLatLngZoom(p, 17));
+         Marker newpoiloc = map.addMarker(new MarkerOptions()
+                 .position(p)
+                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker01_30))
+                 .draggable(false));
+
 	 }
 	 
 	

@@ -28,7 +28,7 @@
 		        android:layout_marginStart="50dp"
 		        android:layout_marginLeft="50dp"
 		        android:singleLine="true"
-		        android:textColor="#6E5929"
+		        android:textColor="#842203"
 		        android:textSize="19sp" />
 		    <TextView
 		      	android:id="@+id/poiDistance"
@@ -37,8 +37,8 @@
 		        android:gravity="center_vertical"
 		        android:layout_marginStart="50dp"
 		        android:layout_marginLeft="50dp"
-		        android:textColor="#84724A"
-		        android:textSize="15sp" />
+		        android:textColor="#AA3D1B"
+		        android:textSize="13sp" />
 		
 		    
         </LinearLayout>

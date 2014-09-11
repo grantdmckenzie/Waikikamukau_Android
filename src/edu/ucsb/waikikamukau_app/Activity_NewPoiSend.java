@@ -42,10 +42,10 @@ public class Activity_NewPoiSend extends Activity {
             String name = extras.getString("name");
             String cat = extras.getString("cat");
 
-            String[] params = new String[4];
+            String[] params = new String[5];
             params[0] = "http://stko-testing.geog.ucsb.edu:8080/Waikikamukau/AddPoi"; // ?lat=34.43&lng=-119.92";
             params[1] = latitude+"";
-            params[2] = longitude+"";   
+            params[2] = longitude+"";
             params[3] = name;
             params[4] = cat;
             new GetNearby().execute(params);
@@ -66,23 +66,25 @@ public class Activity_NewPoiSend extends Activity {
         private ProgressDialog dialog = new ProgressDialog(Activity_NewPoiSend.this);
 
         protected void onPreExecute() {
-            dialog.setMessage("Let's see what is nearby...");
+            dialog.setMessage("Adding the new POI");
             dialog.show();
         }
 
-        protected String doInBackground(String... urls) {
+        protected String doInBackground(String... dataparams) {
 
             String URL = null;
-            String queryParam = null;
             String lat = null;
             String lng = null;
+            String name = null;
+            String cat = null;
 
             try {
 
-                URL = urls[0];
-                lat = urls[1];
-                lng = urls[2];
-                queryParam = urls[3];
+                URL = dataparams[0];
+                lat = dataparams[1];
+                lng = dataparams[2];
+                name = dataparams[3];
+                cat = dataparams[4];
 
                 HttpConnectionParams.setConnectionTimeout(params, REGISTRATION_TIMEOUT);
                 HttpConnectionParams.setSoTimeout(params, WAIT_TIMEOUT);
@@ -91,10 +93,11 @@ public class Activity_NewPoiSend extends Activity {
                 HttpPost httpPost = new HttpPost(URL);
                 //Log.v("Wai","URL: " +URL);
                 //add name value pair for the country code
-                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(4);
                 nameValuePairs.add(new BasicNameValuePair("lat",String.valueOf(lat)));
                 nameValuePairs.add(new BasicNameValuePair("lng",String.valueOf(lng)));
-                nameValuePairs.add(new BasicNameValuePair("q",String.valueOf(queryParam)));
+                nameValuePairs.add(new BasicNameValuePair("name",String.valueOf(name)));
+                nameValuePairs.add(new BasicNameValuePair("cat",String.valueOf(cat)));
                 httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 response = httpclient.execute(httpPost);
 

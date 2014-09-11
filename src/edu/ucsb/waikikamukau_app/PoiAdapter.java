@@ -1,10 +1,7 @@
 package edu.ucsb.waikikamukau_app;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +9,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.ArrayList;
 
 public class PoiAdapter extends ArrayAdapter<Poi> {
 	public Typeface coolvetica;
@@ -27,7 +28,7 @@ public class PoiAdapter extends ArrayAdapter<Poi> {
 	
     public PoiAdapter(Context context, ArrayList<Poi> pois) {
         super(context, R.layout.item_poi, pois);
-        coolvetica =Typeface.createFromAsset(context.getAssets(),"fonts/Gotham-Book.ttf");
+        coolvetica =Typeface.createFromAsset(context.getAssets(),"fonts/Gotham-Light.ttf");
         mContext = context;
      }
 
@@ -52,7 +53,11 @@ public class PoiAdapter extends ArrayAdapter<Poi> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // Populate the data into the template view using the data object
-        viewHolder.name.setText(poi.name);
+         try {
+             viewHolder.name.setText(URLDecoder.decode(poi.name, "latin-1"));
+         } catch(UnsupportedEncodingException e) {
+             // to do
+         }
         if (poi.name == "Add New Point of Interest")
         	viewHolder.distance.setText("");
         else

@@ -67,16 +67,20 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <activity
+            android:name="edu.ucsb.waikikamukau_app.Activity_NewPoiSend"
+            android:label="@string/title_activity_activity__new_poi_send"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyD2sU-R0wIDkX97dD0p42MXVXq0vnbHPoY" />
 
         <activity
-            android:name="edu.ucsb.waikikamukau_app.Activity_NewPoiSend"
-            android:label="@string/title_activity_activity__new_poi_send"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:name="edu.ucsb.waikikamukau_app.MyActivity"
+            android:label="@string/title_activity_my" >
         </activity>
     </application>
 
